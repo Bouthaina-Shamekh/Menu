@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::prefix(LaravelLocalization::setLocale())->group(function(){
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::resource('categories', CategoryController::class);
@@ -32,4 +32,5 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('qr',  QrController::class);
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+});
 });
