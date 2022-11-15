@@ -20,6 +20,38 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('adminassets/css/sb-admin-2.min.css')}}" rel="stylesheet">
     @yield('styles')
+
+    @if(app()->currentlocale() =='ar')
+    <style>
+        body{
+              direction: rtl;
+              text-align: right
+            }
+            .sidebar{
+
+                padding: 0;
+            }
+
+            .sidebar .nav-item .nav-link{
+                    text-align: right
+
+            }
+            .sidebar .nav-item .nav-link[data-toggle=collapse].collapsed::after {
+            transform: rotate(180deg);
+        }
+
+        .ml-auto, .mx-auto {
+            margin-right: auto!important;
+            margin-left: 0!important;
+        }
+
+        .dropdown-item {
+            text-align: right
+        }
+
+
+    </style>
+     @endif
 </head>
 
 <body id="page-top">

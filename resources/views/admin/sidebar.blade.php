@@ -28,7 +28,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories"
             aria-expanded="true" aria-controls="collapseCategories">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-fw fa-tags"></i>
             <span>{{__('admin.categories')}}</span>
         </a>
         <div id="collapseCategories" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -48,7 +48,7 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeals"
             aria-expanded="true" aria-controls="collapseMeals">
             <i class="fas fa-fw fa-cog"></i>
-            <span>{{__('admin.meals')}}</span>
+                        <span>{{__('admin.meals')}}</span>
         </a>
         <div id="collapseMeals" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -102,7 +102,7 @@
     <hr class="sidebar-divider">
     <li class="nav-item">
         <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fa-solid fa-user"></i>
             <span>{{__('admin.user')}}</span></a>
     </li>
 
