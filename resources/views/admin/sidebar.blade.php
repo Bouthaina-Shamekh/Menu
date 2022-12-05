@@ -34,8 +34,8 @@
         <div id="collapseCategories" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="#">All Categories </a>
-                <a class="collapse-item" href="#">Add New</a>
+                <a class="collapse-item" href="{{ route('admin.categories.index')}}">All Categories </a>
+                <a class="collapse-item" href="{{ route('admin.categories.create')}}">Add New</a>
             </div>
         </div>
     </li>
@@ -53,8 +53,8 @@
         <div id="collapseMeals" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="#">All meals </a>
-                <a class="collapse-item" href="#">Add meal</a>
+                <a class="collapse-item" href="{{ route('admin.meals.index')}}">All meals </a>
+                <a class="collapse-item" href="{{ route('admin.meals.create')}}">Add meal</a>
             </div>
         </div>
     </li>
@@ -71,8 +71,8 @@
         <div id="collapseQr" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="#">All qr </a>
-                <a class="collapse-item" href="#">Add qr</a>
+                <a class="collapse-item" href="{{ route('admin.qrs.index')}}">All qr </a>
+                <a class="collapse-item" href="{{ route('admin.qrs.create')}}">Add qr</a>
             </div>
         </div>
     </li>
@@ -91,8 +91,8 @@
         <div id="collapseMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
 
-                <a class="collapse-item" href="#">All menu </a>
-                <a class="collapse-item" href="#">Add menu</a>
+                <a class="collapse-item" href="{{ route('admin.menus.index')}}">All menu </a>
+                <a class="collapse-item" href="{{ route('admin.menus.create')}}">Add menu</a>
             </div>
         </div>
     </li>

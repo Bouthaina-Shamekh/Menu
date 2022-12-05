@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Qr;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class QrController extends Controller
 {
@@ -14,7 +16,9 @@ class QrController extends Controller
      */
     public function index()
     {
-        //
+
+        $qrs = Qr::orderByDesc('id')->paginate(5);
+        return view('admin.qrs.index', compact('qrs'));
     }
 
     /**
@@ -24,7 +28,8 @@ class QrController extends Controller
      */
     public function create()
     {
-        //
+        $qrs = Qr::all();
+        return view('admin.qrs.create', compact('qrs'));
     }
 
     /**
@@ -35,7 +40,25 @@ class QrController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // Validate Data
+         $request->validate([
+            'link' =>'nullable',
+            'image' => 'required',
+        ]);
+
+        $img = $request->file('image');
+        $img_name = rand() . time() . $img->getClientOriginalName();
+        $img->move(public_path('uploads/qrs'), $img_name);
+
+        // Insert To Database
+
+        Qr::create([
+            'link' => $request->link,
+            'image' => $img_name,
+        ]);
+
+        // Redirect
+        return redirect()->route('admin.qrs.index')->with('msg', 'Qr created successfully')->with('type', 'success');
     }
 
     /**
@@ -57,7 +80,12 @@ class QrController extends Controller
      */
     public function edit($id)
     {
-        //
+        $qrs = Qr::all();
+        $qr = Qr::findOrFail($id);
+
+        return view('admin.qrs.edit' , compact('qrs','qr'));
+
+
     }
 
     /**
@@ -69,7 +97,31 @@ class QrController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // Validate Data
+        $request->validate([
+            'link' => 'required',
+        ]);
+
+        $qr = Qr::findOrFail($id);
+
+        // Upload File
+
+        $img_name = $qr->image;
+        if($request->hasFile('image')) {
+           $img_name = rand() . time() . $request->file('image')->getClientOriginalName();
+          $request->file('image')->move(public_path('uploads/qrs'), $img_name);
+       }
+
+        // Insert To Database
+
+        $qr->update([
+            'link' => $request->link,
+            'image' => $img_name,
+        ]);
+
+        // Redirect
+        return redirect()->route('admin.qrs.index')->with('msg', 'Qr updated successfully')->with('type', 'info');
     }
 
     /**
@@ -80,6 +132,11 @@ class QrController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $qr = Qr::findOrFail($id);
+
+        File::delete(public_path('uploads/qrs/'.$qr->image));
+        $qr->delete();
+
+        return redirect()->route('admin.qrs.index')->with('msg', 'Qr deleted successfully')->with('type', 'danger');
     }
 }

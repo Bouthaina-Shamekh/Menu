@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SiteController;
 use App\Http\Controllers\Admin\QrController;
 use App\Http\Controllers\Admin\MealController;
 use App\Http\Controllers\Admin\MenuController;
@@ -31,7 +32,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth','check_user')->group(f
     Route::resource('categories', CategoryController::class);
     Route::resource('meals', MealController::class);
     Route::resource('menus',  MenuController::class);
-    Route::resource('qr',  QrController::class);
+    Route::resource('qrs',  QrController::class);
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 });
@@ -43,3 +44,5 @@ Route::view('not_allowed', 'not_allowed');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/',[SiteController::Class, 'index'])->name('site.index');
