@@ -5,7 +5,7 @@ namespace App\Providers;
 
 
 
-
+//use Illuminate\Support\Facades\Paginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
@@ -33,6 +33,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        //Paginator::useBootstrapFive();
+        Paginator::useBootstrap();
     }
 }
