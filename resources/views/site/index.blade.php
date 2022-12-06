@@ -41,16 +41,17 @@
                 </svg>
               </div>
               <!-- USER SELECT NONE -->
-              @foreach ( $categories_slider as $item)
+              @foreach ( $categories as $item)
 
 
               <li class="slide flex shrink-0 snap-start items-center justify-center">
                 <button
                   class="tab-button flex flex-col items-center justify-center gap-2 transition"
-                  data-tab="category-1">
+                  data-tab="category-{{$item->id}}" >
                   <img
                     src="{{ asset('uploads/categories/' . $item->image) }}"
                     alt="Categories-01"
+
                     class="pointer-events-none aspect-video w-32 select-none rounded-lg object-cover transition group-hover:rotate-2 group-hover:scale-110" />
                   <p class="pointer-events-none text-sm font-medium leading-normal">{{ $item->name }}</p>
                 </button>
@@ -66,18 +67,19 @@
           </div>
         </header>
         <section>
-          <div class="tab-content hidden" id="category-1">
+            @foreach ( $categories as $category)
+          <div class="tab-content hidden" id="category-{{$category->id}}">
             <div class="mb-3 flex flex-col items-center justify-center gap-3 sm:mb-5">
               <h2 class="text-base font-semi-bold leading-none sm:text-lg">{{$menus->title}}</h2>
-              <p class="text-sm leading-none text-zinc-400">أشهى أصناف برجر اللحم</p>
+              <p class="text-sm leading-none text-zinc-400">أشهى أصناف {{$category->name}}</p>
             </div>
             <ul class="flex flex-col items-center justify-center gap-3 sm:gap-5">
-                @foreach ( $meals as $item)
+                @foreach ( $category->meals as $item)
 
               <li>
                 <!-- JUSTIFY BETWEEN -->
                 <a
-                  href="./details.html"
+                  href="{{ route("site.details", $item-> id)}}"
                   class="flex items-start justify-between gap-3 rounded-lg bg-zinc-800 p-3 sm:gap-5 sm:p-5">
                   <div class="flex flex-col items-start justify-center">
                     <h3 class="mb-3 text-base font-bold leading-5 sm:text-lg">{{ $item->name}}</h3>
@@ -108,6 +110,7 @@
             </ul>
           </div>
 
+          @endforeach
 
         </section>
       </div>

@@ -46,3 +46,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/',[SiteController::Class, 'index'])->name('site.index');
+Route::get('categories/{id}',[SiteController::Class, 'index'])->name('site.index');
+Route::get('details/{id}',[SiteController::Class, 'details'])->name('site.details');
+

@@ -11,9 +11,16 @@ class SiteController extends Controller
 {
     public function index()
     {
-        $categories_slider = Category::orderByDesc('id')->take(4)->get();
-        $meals = Meal::orderByDesc('id')->take(3)->get();
+
+        $categories = Category::orderByDesc('id')->latest()->get();
+        $meals = Meal::all();
         $menus = Menu::first();
-        return view('site.index', compact('categories_slider','meals','menus'));
+        return view('site.index', compact('meals','menus','categories'));
+    }
+
+    public function details($id)
+    {
+        $meals = Meal::find($id);
+        return view ('site.details', compact('meals'));
     }
 }

@@ -176,7 +176,7 @@ class MealController extends Controller
            // 'image_icon1' => $image_icon1,
            // 'image_icon2' => $image_icon2,
            // 'image_icon3' => $image_icon3,
-          //  'category_id' => $request->category_id,
+           'category_id' => $request->category_id,
 
 
         ]);
